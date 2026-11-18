@@ -1,11 +1,13 @@
-//  Declares the Java package shared by the banking application classes.
 package bank;
-/** Inheritance demonstration: SavingsAccount extends BankAccount. */
-//  Declares this domain type and its inheritance or interface relationships.
+import java.math.BigDecimal;
+/**
+ * Savings account (T03). Rules (T04): no overdraft, and each withdrawal or outgoing
+ * transfer is capped at $1,000.00, which overrides the base class's "no limit" default.
+ */
 public class SavingsAccount extends BankAccount {
-    //  Defines a constructor or method that provides this class’s documented behavior.
+    private static final long serialVersionUID = 1L;
+    public static final BigDecimal MAX_WITHDRAWAL = new BigDecimal("1000.00");
     public SavingsAccount(String number) { super(number,AccountType.SAVINGS); }
-    // TODO T03/T04: override a polymorphic account rule (e.g., minimum balance)
-    // and explain dynamic dispatch; instructor reference uses shared base behavior.
-//  Opens or closes the current Java block or declaration.
+    @Override protected BigDecimal availableFunds(){return getBalance();}
+    @Override protected BigDecimal withdrawalLimit(){return MAX_WITHDRAWAL;}
 }

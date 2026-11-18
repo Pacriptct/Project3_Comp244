@@ -5,6 +5,7 @@ bin/
 
 # Runtime save files (serialized storage)
 data/*.ser
+data/*.tmp
 
 # IDE / OS
 .idea/
